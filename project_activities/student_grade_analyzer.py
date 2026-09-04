@@ -12,3 +12,15 @@
 def display_students(students):
     """Displays all students with their assigned index and grade."""
     pass
+
+def calculate_average(grades):
+    """Calculates the numerical average (mean) of grades."""
+    pass
+
+def get_passing_students(students):
+    """Filters and retrieves all students who achieved a passing grade."""
+    pass
+
+def get_failing_students(students):
+    """Filters and retrieves all students whose grades fall below the passing threshold."""
+    pass
