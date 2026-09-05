@@ -1,0 +1,70 @@
+# ==============================================================================
+# 1. FOUNDATION: TUPLE UNPACKING
+# ==============================================================================
+# A tuple is an ordered, immutable collection: ("luis", 92.5).
+# Python matches variables to tuple elements by position (order):
+#   - Position 0 ("luis") -> assigns to variable 'name'
+#   - Position 1 (92.5)   -> assigns to variable 'grade'
+
+name, grade = ("luis", 92.5)
+print(name)   # Output: luis
+print(grade)  # Output: 92.5
+
+
+# ==============================================================================
+# 2. RAW DATA CONTAINER: LIST OF TUPLES
+# ==============================================================================
+# 'students' is a mutable list holding multiple 2-element student tuples.
+
+students = [
+    ("Alice", 92.5),
+    ("Bob", 68.0),
+    ("Charlie", 85.5),
+    ("Diana", 94.0),
+    ("Evan", 72.0)
+]
+
+print("\n=== RAW DATA ===")
+print("students list:", students)
+
+
+# ==============================================================================
+# 3. BASIC LIST COMPREHENSION (WITHOUT CONDITION)
+# ==============================================================================
+# General Syntax:
+#     [ <output_expression> for <variables> in <iterable> ]
+#
+# Foundation Roles:
+#   1. <iterable>:
+#      The source data container being traversed (students).
+#   2. for <variables> in:
+#      Pulls one item per iteration. Since each element is a tuple (name, grade),
+#      Python unpacks Position 0 into 'name' and Position 1 into 'grade'.
+#   3. <output_expression>:
+#      The value placed into the new list.
+#      - If you write 'grade', it collects only the numeric marks.
+#      - If you write 'name', it collects only the student names.
+
+all_grades_unfiltered = [grade for name, grade in students]
+print("\n--- Basic Comprehension (All Grades, No Filter) ---")
+print(all_grades_unfiltered)
+# Output: [92.5, 68.0, 85.5, 94.0, 72.0]
+
+
+# ==============================================================================
+# 4. FILTERED LIST COMPREHENSION (WITH CONDITION)
+# ==============================================================================
+# General Syntax:
+#     [ <output_expression> for <variables> in <iterable> if <condition> ]
+#
+# Role of the 'if <condition>' clause:
+#   - Acts as a gatekeeper/filter.
+#   - It checks 'if grade >= 75' BEFORE evaluating the output expression.
+#   - If True  -> Python evaluates <output_expression> ('grade') and adds it.
+#   - If False -> Python discards the element and moves to the next iteration.
+
+all_grades = [grade for name, grade in students if grade >= 75]
+
+print("\n--- Filtered Comprehension (Grades >= 75) ---")
+print(all_grades)
+# Output: [92.5, 85.5, 94.0]
