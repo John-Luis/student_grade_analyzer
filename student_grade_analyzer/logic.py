@@ -16,7 +16,6 @@ class StudentGradeAnalyzer:
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
-        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
