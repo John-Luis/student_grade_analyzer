@@ -8,15 +8,14 @@
 # Mayor, John Luis V.
 # Pagdanganan, Kryzle Camille S.
 # ============================================================
-
-from grade_statistics import GradeStatistics
+import pandas as pd
+import numpy as np
 
 class StudentGradeAnalyzer:
 
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
-        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
@@ -71,16 +70,28 @@ class StudentGradeAnalyzer:
     #   - sum(list_of_numbers) / len(list_of_numbers) -> calculates class average
     # ==============================================================================================================================
 
+    def validate(self, grades):
+        """Validates grades list and returns a Pandas Series."""
+        if grades is None:
+            grades = self.get_all_grades()
 
+        for grade in grades:
+            if grade < 0 or grade > 100:
+                return pd.Series([np.nan])
+
+        return pd.Series(grades)
 
     def get_highest_grade(self):
-        grades = self.get_all_grades() 
-        return self.grade_statistics.highest(grades)    
+        """Returns the highest grade."""
+        grades_series = self.validate()
+        return grades_series.dropna().max()
 
     def get_lowest_grade(self):
+        """Returns the lowest grade."""
         pass
 
     def calculate_average(self):
+        """Calculates and returns the class average."""
         pass
 
     # ==============================================================================
