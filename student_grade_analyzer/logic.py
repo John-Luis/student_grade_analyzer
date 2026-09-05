@@ -35,60 +35,82 @@ class StudentGradeAnalyzer:
 
 
     def add_student_record(self, name, grade):
-        """Allows dynamically adding new student tuples."""
         self.students.append((name, float(grade)))
+    # 
+    # ==============================================================================
+    # EXTRACTION BASIS
+    # How this list comprehension works:
+    #   [ <output_expression> for <variables> in <iterable> ]
+    #
+    # 1. <iterable>: self.students (the list of tuples)
+    # 2. for _, grade in self.students:
+    #      - It unpacks each 2-element tuple: (name, grade).
+    #      - We use '_' as an underscore variable because we don't need the name here.
+    #      - 'grade' captures the numerical value (e.g., 92.5, 68.0).
+    # 3. <output_expression>: grade (at the front)
+    #      - Tells Python to place ONLY the numerical grade into the new list.
+    # ==============================================================================
 
-
-    # Here, ito na magiging basis niyo for data extraction. Mag puput na lang kayo ng for loop and filtering conditions. Hence, list comprehension.
     def get_all_grades(self):
         """List Comprehension: Extracts all numerical grades from the student records."""
         return [grade for _, grade in self.students]
-    
-    # DO NOT CHANGE
-# ==============================================================================================================================
 
-    # TASK OF ANGELO AND ROD. Pwede niyo na pagsamahin dito yung get highest and lowest function para mas maliit.
+
+
+    # DO NOT CHANGE
+    # ==============================================================================================================================
+    # TASK OF ANGELO AND ROD (Tasks 3, 4, 5)
+    # WHAT DATA TO USE:
+    #   Call 'self.get_all_grades()' to get a clean list of numbers:
+    #   e.g., [92.5, 68.0, 85.5, 94.0, ...]
+    # PYTHON CONCEPTS TO USE:
+    #   - max(list_of_numbers) -> returns the highest score
+    #   - min(list_of_numbers) -> returns the lowest score
+    #   - sum(list_of_numbers) / len(list_of_numbers) -> calculates class average
+    # ==============================================================================================================================
+
+
+
     def get_highest_grade(self):
-        """3. Highest grade using max()."""
-        # TODO: Angelo & Rod implement this
         pass
 
     def get_lowest_grade(self):
-        """4. Lowest grade using min()."""
-        # TODO: Angelo & Rod implement this
         pass
 
     def calculate_average(self):
-        """5. Average grade using sum() and len()."""
-        # TODO: Angelo & Rod implement this
         pass
 
-
-    # TASK OF KRYZLE AND MENARD.. Tbh pwede niyo napagsamahin sa iisang function yung get passing sudent and failing student... only suggestion.
-
+    # ==============================================================================
+    # TASK OF MENARD AND KRYZLE (Tasks 6, 7, 8)    
+    # # Dito, the data or "ITERATION" that you will use is the self.student.
+    # HOW TUPLE UNPACKING WORKS HERE:
+    #   Write: for name, grade in self.students
+    #     - 'name'  receives Position 0 of the tuple (e.g., "Kryzle")
+    #     - 'grade' receives Position 1 of the tuple (e.g., 92.5)
+    #
+    # COMPREHENSION STRUCTURE WITH FILTER:
+    #   [ name for name, grade in self.students if <condition_on_grade> ]
+    #
+    #   - Output Expression = 'name' (you want a list of student names)
+    #   - Variables         = 'name, grade' (unpacks both elements)
+    #   - Iterable          = 'self.students'
+    #   - Condition         = checks 'grade' against the benchmark
+    # ==============================================================================
     
     def get_passing_students(self):
-        """6. Passing students (grade >= 75) using list comprehension."""
-        # TODO: Menard & Kryzle implement this
         pass
 
     def get_failing_students(self):
-        """7. Failing students (grade < 75) using list comprehension."""
-        # TODO: Menard & Kryzle implement this
-        return [name for name, grade in self.students if grade >= 75 ]
         pass
 
     def get_honors_students(self):
-        """8. Students with grades above 90 using list comprehension."""
-        # TODO: Menard & Kryzle implement this
         pass
 
 
         # ========================================================================================
         # DO NOT CHANGE
 
-    def get_memory_diagnostics(self):
-        """Demonstrates copy(), id(), '==', and 'is' operators."""
+    def get_memory(self):
         students_copy = self.students.copy()
         return {
             "orig_id": id(self.students),
@@ -98,7 +120,6 @@ class StudentGradeAnalyzer:
         }
 
     def is_enrolled(self, target_name):
-        """Demonstrates membership checking using 'in'."""
         names = [name for name, _ in self.students]
         return target_name in names
 
