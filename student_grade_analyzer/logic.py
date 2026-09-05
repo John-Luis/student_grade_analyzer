@@ -16,6 +16,7 @@ class StudentGradeAnalyzer:
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
+        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
@@ -109,21 +110,21 @@ class StudentGradeAnalyzer:
     #   - Condition         = checks 'grade' against the benchmark
     # ==============================================================================
     
-    def get_passing_students(self):
+    def get_passing_students(self, passing_grade = 75.0):
         """List Comprehension: Returns names of students with passing grades (>= 75.0)."""
-        return [name for name, grade in self.students if grade >= 75.0]
+        return [name for name, grade in self.students if grade >= passing_grade]
 
-    def get_failing_students(self):
+    def get_failing_students(self, failing_grade = 75.0):
         """List Comprehension: Returns names of students with failing grades (< 75.0)."""
-        pass
+        return [name for name, grade in self.students if grade < failing_grade]
 
-    def get_honors_students(self):
+    def get_honors_students(self, honors_grade = 90.0):   
         """List Comprehension: Returns names of students with grades above 90.0."""
-        return [name for name, grade in self.students if grade > 90.0]
+        return [name for name, grade in self.students if grade > honors_grade]
 
 
     # ========================================================================================
-    # DO NOT CHANGE
+        # DO NOT CHANGE
 
     def get_memory(self):
         students_copy = self.students.copy()
