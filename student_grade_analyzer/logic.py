@@ -71,16 +71,15 @@ class StudentGradeAnalyzer:
     # ==============================================================================================================================
 
     def validate(self, grades):
+        """Validates grades list and returns a Pandas Series."""
+        if grades is None:
+            grades = self.get_all_grades()
 
         for grade in grades:
             if grade < 0 or grade > 100:
-                return np.nan
+                return pd.Series([np.nan])
 
-        valid_grades = [
-            75 if grade < 75 and grade > 0 else grade
-            for grade in grades
-        ]
-        return valid_grades
+        return pd.Series(grades)
 
     def get_highest_grade(self, grades):
         grades = self.validate(grades).dropna()
