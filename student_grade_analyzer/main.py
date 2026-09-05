@@ -14,12 +14,7 @@ def display_students_table(students_list):
         name, grade = students_list[i]
         print(f"{i + 1:<4} {name:<15} {grade:<6.2f}")
 
-def testing():
-    analyzer = StudentGradeAnalyzer()
-    analyzer.initial_record()
-    display_students_table(analyzer.students)
 
-testing()
 
 def run_program():
 
@@ -36,9 +31,17 @@ def run_program():
     5. Average grade
     6. Passing students
     7. Failing students
-    8. Students with grades above 90
-    9. Adding a student record
+    8. Students with Honors
+    9. Search Student Enrollment ('in')
+    10. Verify Memory Identity (copy, id, is, ==)
+    11. Adding a student record 
 """)
             choices = input("Enter your choices from 1 to 9:")
+
+            if choices == "1":
+                   display_students_table(analyzer.students)
+            else:
+                 return "invalid input"
+
 
 run_program()
