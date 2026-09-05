@@ -9,12 +9,14 @@
 # Pagdanganan, Kryzle Camille S.
 # ============================================================
 
+from grade_statistics import GradeStatistics
 
 class StudentGradeAnalyzer:
 
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
+        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
@@ -72,7 +74,8 @@ class StudentGradeAnalyzer:
 
 
     def get_highest_grade(self):
-        pass
+        grades = self.get_all_grades() 
+        return self.grade_statistics.highest(grades)    
 
     def get_lowest_grade(self):
         pass
@@ -105,13 +108,13 @@ class StudentGradeAnalyzer:
         """List Comprehension: Returns names of students with failing grades (< 75.0)."""
         return [name for name, grade in self.students if grade < failing_grade]
 
-    def get_honors_students(self, honors_grade = 90.0):
+    def get_honors_students(self, honors_grade = 90.0):   
         """List Comprehension: Returns names of students with grades above 90.0."""
         return [name for name, grade in self.students if grade > honors_grade]
 
 
     # ========================================================================================
-    # DO NOT CHANGE
+        # DO NOT CHANGE
 
     def get_memory(self):
         students_copy = self.students.copy()
