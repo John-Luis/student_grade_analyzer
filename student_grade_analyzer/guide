@@ -63,7 +63,7 @@ print(all_grades_unfiltered)
 #   - If True  -> Python evaluates <output_expression> ('grade') and adds it.
 #   - If False -> Python discards the element and moves to the next iteration.
 
-all_grades = [grade for name, grade in students if grade >= 75]
+passing_grade = [grade for name, grade in students if grade >= 75]
 
 print("\n--- Filtered Comprehension (Grades >= 75) ---")
 print(all_grades)
