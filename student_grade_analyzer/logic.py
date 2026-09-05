@@ -101,13 +101,16 @@ class StudentGradeAnalyzer:
     # ==============================================================================
     
     def get_passing_students(self):
-        pass
+        """List Comprehension: Returns names of students with passing grades (>= 75.0)."""
+        return [name for name, grade in self.students if grade >= 75.0]
 
     def get_failing_students(self):
+        """List Comprehension: Returns names of students with failing grades (< 75.0)."""
         pass
 
     def get_honors_students(self):
-        pass
+        """List Comprehension: Returns names of students with grades above 90.0."""
+        return [name for name, grade in self.students if grade > 90.0]
 
 
     # ========================================================================================
