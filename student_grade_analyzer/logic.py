@@ -127,6 +127,3 @@ class StudentGradeAnalyzer:
 
 
 
-StudentGradeAnalyzer = StudentGradeAnalyzer()
-StudentGradeAnalyzer.initial_record()
-print(StudentGradeAnalyzer.get_failing_students())
