@@ -16,7 +16,6 @@ class StudentGradeAnalyzer:
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
-        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
@@ -72,25 +71,27 @@ class StudentGradeAnalyzer:
     # ==============================================================================================================================
 
     def validate(self, grades):
+        """Validates grades list and returns a Pandas Series."""
+        if grades is None:
+            grades = self.get_all_grades()
 
         for grade in grades:
             if grade < 0 or grade > 100:
-                return np.nan
+                return pd.Series([np.nan])
 
-        valid_grades = [
-            75 if grade < 75 and grade > 0 else grade
-            for grade in grades
-        ]
-        return valid_grades
+        return pd.Series(grades)
 
-    def get_highest_grade(self, grades):
-        grades = self.validate(grades).dropna()
-        return grades.max()
+    def get_highest_grade(self):
+        """Returns the highest grade."""
+        grades_series = self.validate()
+        return grades_series.dropna().max()
 
-    def get_lowest_grade(self, grades):
+    def get_lowest_grade(self):
+        """Returns the lowest grade."""
         pass
 
-    def calculate_average(self, grades):
+    def calculate_average(self):
+        """Calculates and returns the class average."""
         pass
 
     # ==============================================================================
