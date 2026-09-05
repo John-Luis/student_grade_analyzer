@@ -81,14 +81,14 @@ class StudentGradeAnalyzer:
 
         return pd.Series(grades)
 
-    def get_highest_grade(self, grades):
-        grades = self.validate(grades).dropna()
-        return grades.max()
+    def get_highest_grade(self):
+        grades_series = self.validate()
+        return grades_series.dropna().max()
 
-    def get_lowest_grade(self, grades):
+    def get_lowest_grade(self):
         pass
 
-    def calculate_average(self, grades):
+    def calculate_average(self):
         pass
 
     # ==============================================================================
