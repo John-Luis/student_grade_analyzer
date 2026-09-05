@@ -20,3 +20,25 @@ def testing():
     display_students_table(analyzer.students)
 
 testing()
+
+def run_program():
+
+    while True:
+            analyzer = StudentGradeAnalyzer()
+            analyzer.initial_record()
+
+            print("""
+    Welcome to Student Grade Analyzer V2.0!
+    1. All students (10 students)
+    2. All grades
+    3. Highest grade
+    4. Lowest grade
+    5. Average grade
+    6. Passing students
+    7. Failing students
+    8. Students with grades above 90
+    9. Adding a student record
+""")
+            choices = input("Enter your choices from 1 to 9:")
+
+run_program()
