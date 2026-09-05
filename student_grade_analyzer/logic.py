@@ -100,8 +100,8 @@ class StudentGradeAnalyzer:
     def get_passing_students(self):
         pass
 
-    def get_failing_students(self):
-        return [name for name, grade in self.students if grade < 75.0]
+    def get_failing_students(self, failing_grade = 75.0):
+        return [name for name, grade in self.students if grade < failing_grade]
 
     def get_honors_students(self):
         pass
