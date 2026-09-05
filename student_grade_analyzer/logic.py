@@ -9,12 +9,14 @@
 # Pagdanganan, Kryzle Camille S.
 # ============================================================
 
+from grade_statistics import GradeStatistics
 
 class StudentGradeAnalyzer:
 
     # DO NOT CHANGE
     def __init__(self):
         self.students = []
+        self.grade_statistics = GradeStatistics()
 
     def initial_record(self):
 
@@ -72,7 +74,8 @@ class StudentGradeAnalyzer:
 
 
     def get_highest_grade(self):
-        pass
+        grades = self.get_all_grades() 
+        return self.grade_statistics.highest(grades)    
 
     def get_lowest_grade(self):
         pass
