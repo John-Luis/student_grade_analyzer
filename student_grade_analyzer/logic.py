@@ -70,13 +70,9 @@ class StudentGradeAnalyzer:
     #   - sum(list_of_numbers) / len(list_of_numbers) -> calculates class average
     # ==============================================================================================================================
 
-    # Class creation
-    class GradeStatistics:
-
     def validate(self, grades):
 
         for grade in grades:
-
             if grade < 0 or grade > 100:
                 return np.nan
 
@@ -85,26 +81,15 @@ class StudentGradeAnalyzer:
             for grade in grades
         ]
         return valid_grades
-    
-    def highest(self, grades):
+
+    def get_highest_grade(self, grades):
         grades = self.validate(grades).dropna()
         return grades.max()
-    
-    def lowest(self, grades):
-        pass
-    
-    def average(self, grades):
+
+    def get_lowest_grade(self, grades):
         pass
 
-    # ==============================================================================================================================
-
-    def get_highest_grade(self):
-        pass
-
-    def get_lowest_grade(self):
-        pass
-
-    def calculate_average(self):
+    def calculate_average(self, grades):
         pass
 
     # ==============================================================================
