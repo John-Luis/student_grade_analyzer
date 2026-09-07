@@ -1,13 +1,29 @@
 """
 CMPE 201 - Final Challenge: Student Grade Analyzer
 Group 5 Collaboration Project
+Section: 2-2
+Members:
+- Ferrer, Angelo Terrence D.
+- Flores, Prince Menard T.
+- Guillen, Rod John F.
+- Mayor, John Luis V.
+- Pagdanganan, Kryzle Camille S.
+
 File: main.py (User Interface & Menu Loop)
 """
 
+import time
 from logic import StudentGradeAnalyzer
 
+
+def pause_screen():
+    """Pauses the output so the user can review results before returning to menu."""
+    time.sleep(0.3)
+    input("\n[Press Enter to return to the Main Menu...]")
+
+
 def display_students_table(students_list):
-    """Displays all 10 students with clean tabular formatting."""
+    """Displays all students with clean tabular formatting."""
     print(f"\n{'No.':<4} {'Name':<15} {'Grade':<6}")
     print("-" * 28)
     for i in range(len(students_list)):
@@ -15,102 +31,140 @@ def display_students_table(students_list):
         print(f"{i + 1:<4} {name:<15} {grade:<6.2f}")
 
 
-
 def run_program():
+    # Application startup header
+    print("=" * 60)
+    print("      CMPE 201 - DATA STRUCTURES AND ALGORITHMS")
+    print("             FINAL CHALLENGE: GROUP 5")
+    print("=" * 60)
+    print("Welcome to the Student Grade Analyzer System!")
+    print("Initializing baseline records...")
+    time.sleep(0.8)
 
     analyzer = StudentGradeAnalyzer()
     analyzer.initial_record()
+    print("Ready!\n")
+    time.sleep(0.4)
 
     while True:
+        print("\n" + "=" * 50)
+        print("          STUDENT GRADE ANALYZER V2.0")
+        print("=" * 50)
+        print(" 1. All students (10 students)")
+        print(" 2. All grades")
+        print(" 3. Highest grade")
+        print(" 4. Lowest grade")
+        print(" 5. Average grade")
+        print(" 6. Passing students")
+        print(" 7. Failing students")
+        print(" 8. Students with Honors")
+        print(" 9. Search Student Enrollment ('in')")
+        print(" 10. Verify Memory Identity (copy, id, is, ==)")
+        print(" 11. Add a student record")
+        print("  0. Exit Application")
+        print("=" * 50)
 
+        choices = input("Enter your choice (0-11): ").strip()
 
-            print("""
-    Welcome to Student Grade Analyzer V2.0!
-    1. All students (10 students)
-    2. All grades
-    3. Highest grade
-    4. Lowest grade
-    5. Average grade
-    6. Passing students
-    7. Failing students
-    8. Students with Honors
-    9. Search Student Enrollment ('in')
-    10. Verify Memory Identity (copy, id, is, ==)
-    11. Adding a student record 
-""")
-            choices = input("\nEnter your choices from 1 to 11: ")
+        if choices == "1":
+            print("\n--- Current Class Roster ---")
+            display_students_table(analyzer.students)
+            pause_screen()
 
-            if choices == "1":
-                   display_students_table(analyzer.students)
-
-            elif choices == "2":
-                grades = analyzer.get_all_grades()
-                print("\nGrades:")
-                print(*(f"{i}. {g}" for i, g in enumerate(grades, start=1)), sep="\n")
-
-            elif choices == "3":
-                 highest = analyzer.get_highest_grade()
-                 print(f"\nHighest Grade: {highest}")
-               
-            
-            elif choices == "4":
-                 lowest = analyzer.get_lowest_grade()
-                 print(f"\nLowest Grade: {lowest}")
-                 pass
-            
-            elif choices == "5":
-                 average = analyzer.calculate_average()
-                 print(f"\nAverage Grade: {average}")
-                 pass
-            
-            elif choices == "6":
-                 passing_grade = analyzer.get_passing_students()
-                 print("\nList of Passed Students:")
-                 print(*(f"{i}. {g}" for i, g in enumerate(passing_grade, start=1)), sep="\n")
-
-            elif choices == "7":
-                 print("\nList of Failing Students:")
-                 failing_students = analyzer.get_failing_students()
-                 print(*(f"{i}. {g}" for i, g in enumerate(failing_students, start=1)), sep="\n")
-                 
-            elif choices == "8":
-                honor_students = analyzer.get_honors_students()
-                print("\nList of Honor Students:")
-                print(*(f"{i}. {g}" for i, g in enumerate(honor_students, start=1)), sep="\n")
-
-            elif choices == "9":
-
-                 ask_student_name = input("Enter student name to find: ").capitalize()
-                 print(f"Is {ask_student_name} enrolled student: {analyzer.is_enrolled(ask_student_name)}")
-
-            elif choices == "10":
-                 mem = analyzer.get_memory()
-                 print("\n--- Memory Verification ---")
-                 print(f"Original ID      : {mem['orig_id']}")
-                 print(f"Copy ID          : {mem['copy_id']}")
-                 print(f"Values Equal (==): {mem['is_equal']}")
-                 print(f"Same Object (is) : {mem['is_same_object']}")
-
-            elif choices == "11":
-                 name = input("\nEnter student name: ").strip()
-                 while True:
-                      try:
-                          grade = float(input("Enter grade (0-100): ").strip())
-                          if 0 <= grade <= 100:
-                            break
-                          print("Grade must be between 0 and 100.")
-                      except ValueError:
-                       print("Please enter a valid numeric grade.")
-                 analyzer.add_student_record(name, grade)
-                 print(f"Successfully added {name} ({grade:.2f})!")
-
-            elif choices == "0":
-                print("Goodbye")
-                break
-
+        elif choices == "2":
+            grades = analyzer.get_all_grades()
+            print("\n--- All Numerical Grades ---")
+            if grades:
+                print(*(f"{i}. {g:.2f}" for i, g in enumerate(grades, start=1)), sep="\n")
             else:
-                 return "invalid input"
+                print("No grades recorded.")
+            pause_screen()
+
+        elif choices == "3":
+            highest = analyzer.get_highest_grade()
+            print(f"\n--- Statistic ---\nHighest Grade: {highest}")
+            pause_screen()
+
+        elif choices == "4":
+            lowest = analyzer.get_lowest_grade()
+            print(f"\n--- Statistic ---\nLowest Grade: {lowest}")
+            pause_screen()
+
+        elif choices == "5":
+            average = analyzer.calculate_average()
+            print(f"\n--- Statistic ---\nClass Average: {average:.2f}")
+            pause_screen()
+
+        elif choices == "6":
+            passing_students = analyzer.get_passing_students()
+            print("\n--- List of Passing Students (>= 75) ---")
+            if passing_students:
+                print(*(f"{i}. {name}" for i, name in enumerate(passing_students, start=1)), sep="\n")
+            else:
+                print("No students passed.")
+            pause_screen()
+
+        elif choices == "7":
+            failing_students = analyzer.get_failing_students()
+            print("\n--- List of Failing Students (< 75) ---")
+            if failing_students:
+                print(*(f"{i}. {name}" for i, name in enumerate(failing_students, start=1)), sep="\n")
+            else:
+                print("No failing students.")
+            pause_screen()
+
+        elif choices == "8":
+            honor_students = analyzer.get_honors_students()
+            print("\n--- List of Honor Students (> 90) ---")
+            if honor_students:
+                print(*(f"{i}. {name}" for i, name in enumerate(honor_students, start=1)), sep="\n")
+            else:
+                print("No students qualified for honors.")
+            pause_screen()
+
+        elif choices == "9":
+            ask_student_name = input("\nEnter student name to find: ").strip().capitalize()
+            enrolled = analyzer.is_enrolled(ask_student_name)
+            status = "ENROLLED" if enrolled else "NOT ENROLLED"
+            print(f"Result: {ask_student_name} is {status} in the class record.")
+            pause_screen()
+
+        elif choices == "10":
+            # Matches logic.py method name: get_memory_diagnostics
+            mem = analyzer.get_memory()
+            print("\n--- Memory Verification Diagnostics ---")
+            print(f"Original Object ID (self.students) : {mem['orig_id']}")
+            print(f"Copy Object ID (.copy())           : {mem['copy_id']}")
+            print(f"Value Equality check (==)          : {mem['is_equal']}")
+            print(f"Reference Identity check (is)      : {mem['is_same_object']}")
+            pause_screen()
+
+        elif choices == "11":
+            print("\n--- Add New Student Record ---")
+            name = input("Enter student name: ").strip().capitalize()
+            while True:
+                try:
+                    grade = float(input("Enter grade (0-100): ").strip())
+                    if 0 <= grade <= 100:
+                        break
+                    print("Grade must be between 0 and 100.")
+                except ValueError:
+                    print("Invalid input. Please enter a numerical grade.")
+
+            analyzer.add_student_record(name, grade)
+            print(f"\nSuccess: Added {name} with a grade of {grade:.2f}!")
+            pause_screen()
+
+        elif choices == "0":
+            print("\nThank you for using Student Grade Analyzer V2.0!")
+            print("Exiting application...")
+            time.sleep(0.5)
+            break
+
+        else:
+            print("\n[!] Invalid selection. Please enter a number from 0 to 11.")
+            time.sleep(0.8)
 
 
-
-run_program()
+if __name__ == "__main__":
+    run_program()
