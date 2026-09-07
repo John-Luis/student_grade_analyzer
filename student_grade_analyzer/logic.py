@@ -34,7 +34,6 @@ class StudentGradeAnalyzer:
         for record in initial_records:
             self.students.append(record)
 
-
     def add_student_record(self, name, grade):
         self.students.append((name, float(grade)))
 
