@@ -2,7 +2,7 @@
 
 ---
 
-## Group Members
+## Developers
 * **Ferrer, Angelo Terrence D.**
 * **Flores, Prince Menard T.**
 * **Guillen, Rod John F.**
