@@ -15,10 +15,11 @@ class StudentGradeAnalyzer:
 
     # DO NOT CHANGE
     def __init__(self):
+        """Initializes the analyzer with an empty student records list."""
         self.students = []
 
     def initial_record(self):
-
+        """Populates the initial dataset with default student records."""
         initial_records = [
             ("Kryzle", 92.5),
             ("Prince", 68.0),
@@ -35,6 +36,7 @@ class StudentGradeAnalyzer:
             self.students.append(record)
 
     def add_student_record(self, name, grade):
+        """Appends a new student tuple record to the student list."""
         self.students.append((name, float(grade)))
 
     def get_all_grades(self):
@@ -69,7 +71,7 @@ class StudentGradeAnalyzer:
         
         if len(valid_grades) == 0:
             return 0.0
-        return round(valid_grades.mean(), 2)
+        return round(float(valid_grades.mean()), 2)
 
     def get_passing_students(self, passing_grade = 75.0):
         """List Comprehension: Returns names of students with passing grades (>= 75.0)."""
@@ -84,6 +86,7 @@ class StudentGradeAnalyzer:
         return [name for name, grade in self.students if grade > honors_grade]
 
     def get_memory(self):
+        """Performs memory identity and value equality diagnostics on list copies."""
         students_copy = self.students.copy()
         return {
             "orig_id": id(self.students),
@@ -93,5 +96,6 @@ class StudentGradeAnalyzer:
         }
 
     def is_enrolled(self, target_name):
+        """Checks student enrollment status using membership testing ('in')."""
         names = [name for name, _ in self.students]
         return target_name in names 
