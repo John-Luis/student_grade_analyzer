@@ -1,16 +1,13 @@
-"""
-CMPE 201 - Final Challenge: Student Grade Analyzer
-Group 5 Collaboration Project
-Section: 2-2
-Members:
-- Ferrer, Angelo Terrence D.
-- Flores, Prince Menard T.
-- Guillen, Rod John F.
-- Mayor, John Luis V.
-- Pagdanganan, Kryzle Camille S.
-
-File: main.py (User Interface & Menu Loop)
-"""
+# ============================================================
+# CMPE 201 Section2-2 - Data Structures and Algorithm
+# FINAL CHALLENGE: Student Grade Analyzer
+# Submitted by GROUP 5
+# Ferrer, Angelo Terrence D.
+# Flores, Prince Menard T.
+# Guillen, Rod John F.
+# Mayor, John Luis V.
+# Pagdanganan, Kryzle Camille S.
+# ============================================================
 
 import time
 from logic import StudentGradeAnalyzer

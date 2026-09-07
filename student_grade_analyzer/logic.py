@@ -37,38 +37,10 @@ class StudentGradeAnalyzer:
 
     def add_student_record(self, name, grade):
         self.students.append((name, float(grade)))
-    # 
-    # ==============================================================================
-    # EXTRACTION BASIS
-    # How this list comprehension works:
-    #   [ <output_expression> for <variables> in <iterable> ]
-    #
-    # 1. <iterable>: self.students (the list of tuples)
-    # 2. for _, grade in self.students:
-    #      - It unpacks each 2-element tuple: (name, grade).
-    #      - We use '_' as an underscore variable because we don't need the name here.
-    #      - 'grade' captures the numerical value (e.g., 92.5, 68.0).
-    # 3. <output_expression>: grade (at the front)
-    #      - Tells Python to place ONLY the numerical grade into the new list.
-    # ==============================================================================
 
     def get_all_grades(self):
         """List Comprehension: Extracts all numerical grades from the student records."""
         return [grade for _, grade in self.students]
-
-
-
-    # DO NOT CHANGE
-    # ==============================================================================================================================
-    # TASK OF ANGELO AND ROD (Tasks 3, 4, 5)
-    # WHAT DATA TO USE:
-    #   Call 'self.get_all_grades()' to get a clean list of numbers:
-    #   e.g., [92.5, 68.0, 85.5, 94.0, ...]
-    # PYTHON CONCEPTS TO USE:
-    #   - max(list_of_numbers) -> returns the highest score
-    #   - min(list_of_numbers) -> returns the lowest score
-    #   - sum(list_of_numbers) / len(list_of_numbers) -> calculates class average
-    # ==============================================================================================================================
 
     def validate(self, grades=None):
         """Validates grades list and returns a Pandas Series."""
@@ -106,23 +78,6 @@ class StudentGradeAnalyzer:
             return 0.0
         return round(valid_grades.mean(), 2)
 
-    # ==============================================================================
-    # TASK OF MENARD AND KRYZLE (Tasks 6, 7, 8)    
-    # # Dito, the data or "ITERATION" that you will use is the self.student.
-    # HOW TUPLE UNPACKING WORKS HERE:
-    #   Write: for name, grade in self.students
-    #     - 'name'  receives Position 0 of the tuple (e.g., "Kryzle")
-    #     - 'grade' receives Position 1 of the tuple (e.g., 92.5)
-    #
-    # COMPREHENSION STRUCTURE WITH FILTER:
-    #   [ name for name, grade in self.students if <condition_on_grade> ]
-    #
-    #   - Output Expression = 'name' (you want a list of student names)
-    #   - Variables         = 'name, grade' (unpacks both elements)
-    #   - Iterable          = 'self.students'
-    #   - Condition         = checks 'grade' against the benchmark
-    # ==============================================================================
-    
     def get_passing_students(self, passing_grade = 75.0):
         """List Comprehension: Returns names of students with passing grades (>= 75.0)."""
         return [name for name, grade in self.students if grade >= passing_grade]
@@ -134,10 +89,6 @@ class StudentGradeAnalyzer:
     def get_honors_students(self, honors_grade = 90.0):   
         """List Comprehension: Returns names of students with grades above 90.0."""
         return [name for name, grade in self.students if grade > honors_grade]
-
-
-    # ========================================================================================
-        # DO NOT CHANGE
 
     def get_memory(self):
         students_copy = self.students.copy()
