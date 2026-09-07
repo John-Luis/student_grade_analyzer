@@ -52,12 +52,6 @@ class StudentGradeAnalyzer:
 
         return pd.Series(grades)
 
-        for grade in grades:
-            if grade < 0 or grade > 100:
-                return pd.Series([np.nan])
-
-        return pd.Series(grades)
-
     def get_highest_grade(self):
         """Returns the highest grade."""
         grades_series = self.validate()
