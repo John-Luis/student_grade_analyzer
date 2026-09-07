@@ -70,10 +70,16 @@ class StudentGradeAnalyzer:
     #   - sum(list_of_numbers) / len(list_of_numbers) -> calculates class average
     # ==============================================================================================================================
 
-    def validate(self, grades):
+    def validate(self, grades=None):
         """Validates grades list and returns a Pandas Series."""
         if grades is None:
             grades = self.get_all_grades()
+
+        for grade in grades:
+            if grade < 0 or grade > 100:
+                return pd.Series([np.nan])
+
+        return pd.Series(grades)
 
         for grade in grades:
             if grade < 0 or grade > 100:
@@ -88,11 +94,17 @@ class StudentGradeAnalyzer:
 
     def get_lowest_grade(self):
         """Returns the lowest grade."""
-        pass
+        grades_series = self.validate()
+        return grades_series.dropna().min()
 
     def calculate_average(self):
         """Calculates and returns the class average."""
-        pass
+        grades_series = self.validate()
+        valid_grades = grades_series.dropna()
+        
+        if len(valid_grades) == 0:
+            return 0.0
+        return round(valid_grades.mean(), 2)
 
     # ==============================================================================
     # TASK OF MENARD AND KRYZLE (Tasks 6, 7, 8)    
@@ -138,9 +150,4 @@ class StudentGradeAnalyzer:
 
     def is_enrolled(self, target_name):
         names = [name for name, _ in self.students]
-        return target_name in names
-
-
-
-
-
+        return target_name in names 

@@ -49,12 +49,18 @@ def run_program():
                 print(*(f"{i}. {g}" for i, g in enumerate(grades, start=1)), sep="\n")
 
             elif choices == "3":
-                 pass
+                 highest = analyzer.get_highest_grade()
+                 print(f"\nHighest Grade: {highest}")
+               
             
             elif choices == "4":
+                 lowest = analyzer.get_lowest_grade()
+                 print(f"\nLowest Grade: {lowest}")
                  pass
             
             elif choices == "5":
+                 average = analyzer.calculate_average()
+                 print(f"\nAverage Grade: {average}")
                  pass
             
             elif choices == "6":
